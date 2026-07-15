@@ -116,3 +116,58 @@ transform:translateY(-8px);
 100%{transform:rotate(0deg);}
 
 }
+
+.shakeBig{
+
+    animation:shakeBig .6s;
+
+}
+
+.glow{
+
+    animation:glow 1s infinite alternate;
+
+}
+
+.open{
+
+    transform:scale(1.3);
+
+    transition:1s;
+
+}
+
+.dark{
+
+    transition:1s;
+
+    background:#ffb6d9;
+
+}
+
+@keyframes glow{
+
+from{
+
+filter:drop-shadow(0 0 5px hotpink);
+
+}
+
+to{
+
+filter:drop-shadow(0 0 40px deeppink);
+
+}
+
+}
+
+@keyframes shakeBig{
+
+0%{transform:rotate(0deg);}
+20%{transform:rotate(-10deg);}
+40%{transform:rotate(10deg);}
+60%{transform:rotate(-10deg);}
+80%{transform:rotate(10deg);}
+100%{transform:rotate(0deg);}
+
+}
