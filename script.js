@@ -1,20 +1,49 @@
 const gift = document.getElementById("giftBox");
 
 let taps = 0;
+let opened = false;
 
-gift.addEventListener("click", ()=>{
+gift.addEventListener("click", () => {
+
+    if (opened) return;
 
     taps++;
 
-    gift.classList.add("shake");
+    gift.classList.remove("shake","shakeBig","glow");
 
-    setTimeout(()=>{
-        gift.classList.remove("shake");
-    },400);
+    void gift.offsetWidth;
 
-    if(taps==4){
+    if (taps === 1) {
 
-        alert("🎉 Gift Opened! (Next we'll make the real animation)");
+        gift.classList.add("shake");
+
+    }
+
+    else if (taps === 2) {
+
+        gift.classList.add("shakeBig");
+
+    }
+
+    else if (taps === 3) {
+
+        gift.classList.add("glow");
+
+    }
+
+    else if (taps === 4) {
+
+        opened = true;
+
+        document.body.classList.add("dark");
+
+        gift.classList.add("open");
+
+        setTimeout(()=>{
+
+            alert("❤️ Next we're making the heart explosion!");
+
+        },1000);
 
     }
 
