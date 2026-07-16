@@ -34,36 +34,69 @@ gift.addEventListener("click", () => {
 
     else if(taps === 4){
 
-        opened = true;
+    opened = true;
 
-        document.body.classList.add("dark");
-        document.body.classList.add("flash");
+    document.body.classList.add("dark");
+    document.body.classList.add("flash");
 
-        gift.classList.add("open");
 
-        magicGlow.classList.add("magic");
+    // gift opening animation
+    gift.classList.add("open");
 
+
+    // change gift image after animation starts
+    setTimeout(()=>{
+
+        gift.src = "images/gift_open.png";
+
+    },700);
+
+
+
+    // magic glow
+    magicGlow.classList.add("magic");
+
+
+
+    // hearts + sparkles + petals explosion
+    setTimeout(()=>{
+
+        heartExplosion();
+
+
+        // show shy fox later
         setTimeout(()=>{
 
-           heartExplosion();
+            document.getElementById("fox")
+            .classList.add("show");
 
-setTimeout(()=>{
+        },1800);
 
-    document.getElementById("fox")
-    .classList.add("show");
 
-},1800);
 
-setTimeout(()=>{
+        // show heart button
+        setTimeout(()=>{
 
-    document.getElementById("heartButton")
-    .classList.add("show");
+            document.getElementById("heartButton")
+            .classList.add("show");
 
-},3000);
+        },3000);
 
-        },1000);
 
-    }
+
+        // show I LOVE YOU text
+        setTimeout(()=>{
+
+            document.getElementById("loveReveal")
+            .classList.add("show");
+
+        },4200);
+
+
+
+    },1000);
+
+}
 
 });
 
