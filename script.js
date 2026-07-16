@@ -1,122 +1,134 @@
-const gift = document.getElementById("giftBox");
+// ===========================
+// ELEMENTS
+// ===========================
+
+const giftBox = document.getElementById("giftBox");
+const giftImg = document.getElementById("giftImg");
 const magicGlow = document.getElementById("magicGlow");
+
+const fox = document.getElementById("fox");
+const heartButton = document.getElementById("heartButton");
+const loveReveal = document.getElementById("loveReveal");
 
 let taps = 0;
 let opened = false;
 
-gift.addEventListener("click", () => {
+// ===========================
+// GIFT CLICK
+// ===========================
 
-    if (opened) return;
+giftBox.addEventListener("click", () => {
+
+    if(opened) return;
 
     taps++;
 
-    gift.classList.remove("shake","shakeBig","glow");
+    giftBox.classList.remove(
+        "shake",
+        "shakeBig",
+        "glow"
+    );
 
-    void gift.offsetWidth;
+    void giftBox.offsetWidth;
 
     if(taps === 1){
 
-        gift.classList.add("shake");
+        giftBox.classList.add("shake");
 
     }
 
     else if(taps === 2){
 
-        gift.classList.add("shakeBig");
+        giftBox.classList.add("shakeBig");
 
     }
 
     else if(taps === 3){
 
-        gift.classList.add("glow");
+        giftBox.classList.add("glow");
 
     }
 
     else if(taps === 4){
 
-    opened = true;
+        opened = true;
 
-    document.body.classList.add("dark");
-    document.body.classList.add("flash");
+        // screen effect
 
+        document.body.classList.add("dark");
+        document.body.classList.add("flash");
 
-    // gift opening animation
-    gift.classList.add("open");
+        // gift opening
 
+        giftBox.classList.add("open");
 
-    // change gift image after animation starts
-    setTimeout(()=>{
+        // magic circle
 
-        gift.src = "images/gift_open.png";
+        magicGlow.classList.add("magic");
 
-    },700);
+        // change image after opening starts
 
-
-
-    // magic glow
-    magicGlow.classList.add("magic");
-
-
-
-    // hearts + sparkles + petals explosion
-    setTimeout(()=>{
-
-        heartExplosion();
-
-
-        // show shy fox later
         setTimeout(()=>{
 
-            document.getElementById("fox")
-            .classList.add("show");
+            giftImg.src = "images/gift_open.png";
 
-        },1800);
+        },650);
 
+        // explosion
 
-
-        // show heart button
         setTimeout(()=>{
 
-            document.getElementById("heartButton")
-            .classList.add("show");
+            heartExplosion();
 
-        },3000);
+        },1000);
 
+        // fox appears
 
-
-        // show I LOVE YOU text
         setTimeout(()=>{
 
-            document.getElementById("loveReveal")
-            .classList.add("show");
+            fox.classList.add("show");
+
+        },2400);
+
+        // heart button
+
+        setTimeout(()=>{
+
+            heartButton.classList.add("show");
+
+        },3600);
+
+        // love text
+
+        setTimeout(()=>{
+
+            loveReveal.classList.add("show");
 
         },4200);
 
-
-
-    },1000);
-
-}
+    }
 
 });
 
-
+// ==========================================
+// HEART EXPLOSION
+// ==========================================
 
 function heartExplosion(){
 
-    for(let i=0;i<120;i++){
+    for(let i=0;i<150;i++){
 
         createHeart();
 
     }
 
-    for(let i=0;i<80;i++){
+    for(let i=0;i<90;i++){
 
         createSparkle();
 
     }
 
-    for(let i=0;i<50;i++){
+    for(let i=0;i<60;i++){
 
         createPetal();
 
@@ -124,13 +136,15 @@ function heartExplosion(){
 
 }
 
-
+// ==========================================
+// HEARTS
+// ==========================================
 
 function createHeart(){
 
     const heart=document.createElement("div");
 
-    heart.innerHTML="❤";
+    heart.innerHTML="❤️";
 
     heart.style.position="fixed";
 
@@ -138,31 +152,36 @@ function createHeart(){
 
     heart.style.top=(window.innerHeight/2)+"px";
 
-    heart.style.fontSize=(Math.random()*25+15)+"px";
+    heart.style.fontSize=(Math.random()*22+18)+"px";
 
     heart.style.pointerEvents="none";
 
     heart.style.zIndex="9999";
 
-    heart.style.color=
-    `hsl(${330+Math.random()*30},100%,70%)`;
-
     document.body.appendChild(heart);
 
-    const x=(Math.random()-0.5)*900;
+    const x=(Math.random()-0.5)*1000;
 
-    const y=-Math.random()*800-100;
+    const y=(Math.random()-0.5)*900;
 
     heart.animate([
 
         {
+
             transform:"translate(0,0) scale(1)",
+
             opacity:1
+
         },
 
         {
-            transform:`translate(${x}px,${y}px) scale(0.3) rotate(${Math.random()*720}deg)`,
+
+            transform:`translate(${x}px,${y}px)
+            scale(.2)
+            rotate(${Math.random()*720}deg)`,
+
             opacity:0
+
         }
 
     ],{
@@ -177,9 +196,13 @@ function createHeart(){
 
         heart.remove();
 
-    },3800);
+    },4000);
 
 }
+
+// ==========================================
+// SPARKLES
+// ==========================================
 
 function createSparkle(){
 
@@ -188,33 +211,52 @@ function createSparkle(){
     s.className="sparkle";
 
     s.style.left=(window.innerWidth/2)+"px";
+
     s.style.top=(window.innerHeight/2)+"px";
 
     document.body.appendChild(s);
 
     const x=(Math.random()-0.5)*900;
-    const y=(Math.random()-0.5)*700;
+
+    const y=(Math.random()-0.5)*800;
 
     s.animate([
 
-        {transform:"translate(0,0)",opacity:1},
+        {
 
-        {transform:`translate(${x}px,${y}px) scale(0)`,opacity:0}
+            transform:"translate(0,0) scale(1)",
+
+            opacity:1
+
+        },
+
+        {
+
+            transform:`translate(${x}px,${y}px) scale(0)`,
+
+            opacity:0
+
+        }
 
     ],{
 
-        duration:1800+Math.random()*1200,
+        duration:2200,
 
         easing:"ease-out"
 
     });
 
-    setTimeout(()=>s.remove(),3000);
+    setTimeout(()=>{
+
+        s.remove();
+
+    },2500);
 
 }
 
-
-
+// ==========================================
+// PETALS
+// ==========================================
 
 function createPetal(){
 
@@ -223,23 +265,33 @@ function createPetal(){
     p.className="petal";
 
     p.style.left=(window.innerWidth/2)+"px";
+
     p.style.top=(window.innerHeight/2)+"px";
 
     document.body.appendChild(p);
 
-    const x=(Math.random()-0.5)*700;
-    const y=-Math.random()*700;
+    const x=(Math.random()-0.5)*900;
+
+    const y=-Math.random()*900;
 
     p.animate([
 
         {
+
             transform:"translate(0,0) rotate(0deg)",
+
             opacity:1
+
         },
 
         {
-            transform:`translate(${x}px,${y}px) rotate(${Math.random()*720}deg)`,
+
+            transform:
+            `translate(${x}px,${y}px)
+            rotate(${Math.random()*720}deg)`,
+
             opacity:0
+
         }
 
     ],{
@@ -250,6 +302,42 @@ function createPetal(){
 
     });
 
-    setTimeout(()=>p.remove(),3500);
+    setTimeout(()=>{
+
+        p.remove();
+
+    },3500);
 
 }
+
+// ==========================================
+// HEART BUTTON
+// ==========================================
+
+heartButton.addEventListener("click",()=>{
+
+    heartButton.style.pointerEvents="none";
+
+    heartButton.style.transform=
+    "translate(-50%,-50%) scale(1.4) rotate(45deg)";
+
+    setTimeout(()=>{
+
+        loveReveal.innerHTML=`
+
+        <h1>Forever & Always ❤️</h1>
+
+        <p>Tappu ❤️ Sumi</p>
+
+        `;
+
+    },600);
+
+    // Page 2 later
+    setTimeout(()=>{
+
+        alert("Page 2 coming next ❤️");
+
+    },2500);
+
+});
