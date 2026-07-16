@@ -1,6 +1,6 @@
-// ===========================
+// ===============================
 // ELEMENTS
-// ===========================
+// ===============================
 
 const giftBox = document.getElementById("giftBox");
 const giftImg = document.getElementById("giftImg");
@@ -10,334 +10,518 @@ const fox = document.getElementById("fox");
 const heartButton = document.getElementById("heartButton");
 const loveReveal = document.getElementById("loveReveal");
 
+
 let taps = 0;
 let opened = false;
 
-// ===========================
-// GIFT CLICK
-// ===========================
 
-giftBox.addEventListener("click", () => {
 
-    if(opened) return;
+// ===============================
+// GIFT SYSTEM
+// ===============================
 
-    taps++;
 
-    giftBox.classList.remove(
-        "shake",
-        "shakeBig",
-        "glow"
-    );
+giftBox.addEventListener("click",()=>{
 
-    void giftBox.offsetWidth;
 
-    if(taps === 1){
+if(opened) return;
 
-        giftBox.classList.add("shake");
 
-    }
+taps++;
 
-    else if(taps === 2){
 
-        giftBox.classList.add("shakeBig");
 
-    }
+giftBox.classList.remove(
+"shake",
+"shakeBig",
+"glow"
+);
 
-    else if(taps === 3){
 
-        giftBox.classList.add("glow");
+void giftBox.offsetWidth;
 
-    }
 
-    else if(taps === 4){
 
-        opened = true;
+if(taps===1){
 
-        // screen effect
+giftBox.classList.add("shake");
 
-        document.body.classList.add("dark");
-        document.body.classList.add("flash");
+}
 
-        // gift opening
 
-        giftBox.classList.add("open");
 
-        // magic circle
+else if(taps===2){
 
-        magicGlow.classList.add("magic");
+giftBox.classList.add("shakeBig");
 
-        // change image after opening starts
+}
 
-        setTimeout(()=>{
 
-            giftImg.src = "images/gift_open.png";
 
-        },650);
+else if(taps===3){
 
-        // explosion
+giftBox.classList.add("glow");
 
-        setTimeout(()=>{
+}
 
-            heartExplosion();
 
-        },1000);
 
-        // fox appears
 
-        setTimeout(()=>{
+else if(taps===4){
 
-            fox.classList.add("show");
 
-        },2400);
+opened=true;
 
-        // heart button
 
-        setTimeout(()=>{
 
-            heartButton.classList.add("show");
+giftBox.classList.add("open");
 
-        },3600);
+magicGlow.classList.add("magic");
 
-        // love text
 
-        setTimeout(()=>{
 
-            loveReveal.classList.add("show");
+setTimeout(()=>{
 
-        },4200);
+giftImg.src="images/gift_open.png";
 
-    }
+},650);
+
+
+
+
+setTimeout(()=>{
+
+heartExplosion();
+
+},1000);
+
+
+
+
+
+setTimeout(()=>{
+
+fox.classList.add("show");
+
+},2300);
+
+
+
+
+
+setTimeout(()=>{
+
+heartButton.classList.add("show");
+
+},3500);
+
+
+
+
+
+
+setTimeout(()=>{
+
+loveReveal.classList.add("show");
+
+},4200);
+
+
+
+}
+
+
 
 });
 
-// ==========================================
-// HEART EXPLOSION
-// ==========================================
+
+
+
+
+
+// ===============================
+// PARTICLE EXPLOSION
+// ===============================
+
 
 function heartExplosion(){
 
-    for(let i=0;i<150;i++){
 
-        createHeart();
+for(let i=0;i<120;i++){
 
-    }
-
-    for(let i=0;i<90;i++){
-
-        createSparkle();
-
-    }
-
-    for(let i=0;i<60;i++){
-
-        createPetal();
-
-    }
+createHeart();
 
 }
 
-// ==========================================
-// HEARTS
-// ==========================================
+
+
+for(let i=0;i<70;i++){
+
+createSparkle();
+
+}
+
+
+
+for(let i=0;i<50;i++){
+
+createPetal();
+
+}
+
+
+}
+
+
+
+
 
 function createHeart(){
 
-    const heart=document.createElement("div");
 
-    heart.innerHTML="❤️";
+let heart=document.createElement("div");
 
-    heart.style.position="fixed";
 
-    heart.style.left=(window.innerWidth/2)+"px";
+heart.innerHTML="❤️";
 
-    heart.style.top=(window.innerHeight/2)+"px";
 
-    heart.style.fontSize=(Math.random()*22+18)+"px";
+heart.style.position="fixed";
 
-    heart.style.pointerEvents="none";
+heart.style.left="50%";
 
-    heart.style.zIndex="9999";
+heart.style.top="50%";
 
-    document.body.appendChild(heart);
+heart.style.fontSize=
+(Math.random()*25+15)+"px";
 
-    const x=(Math.random()-0.5)*1000;
 
-    const y=(Math.random()-0.5)*900;
+heart.style.zIndex="9999";
 
-    heart.animate([
 
-        {
 
-            transform:"translate(0,0) scale(1)",
+document.body.appendChild(heart);
 
-            opacity:1
 
-        },
 
-        {
+let x=(Math.random()-0.5)*900;
 
-            transform:`translate(${x}px,${y}px)
-            scale(.2)
-            rotate(${Math.random()*720}deg)`,
+let y=(Math.random()-0.5)*700;
 
-            opacity:0
 
-        }
 
-    ],{
+heart.animate([
 
-        duration:2500+Math.random()*1200,
+{
 
-        easing:"ease-out"
+transform:"translate(0,0)",
 
-    });
+opacity:1
 
-    setTimeout(()=>{
+},
 
-        heart.remove();
+{
 
-    },4000);
+transform:
+`translate(${x}px,${y}px) scale(.2)`,
+
+opacity:0
 
 }
 
-// ==========================================
-// SPARKLES
-// ==========================================
+],{
+
+
+duration:2500
+
+});
+
+
+
+setTimeout(()=>{
+
+heart.remove();
+
+},3000);
+
+
+
+}
+
+
+
+
+
 
 function createSparkle(){
 
-    const s=document.createElement("div");
 
-    s.className="sparkle";
+let s=document.createElement("div");
 
-    s.style.left=(window.innerWidth/2)+"px";
 
-    s.style.top=(window.innerHeight/2)+"px";
+s.className="sparkle";
 
-    document.body.appendChild(s);
 
-    const x=(Math.random()-0.5)*900;
+s.style.left="50%";
 
-    const y=(Math.random()-0.5)*800;
+s.style.top="50%";
 
-    s.animate([
 
-        {
+document.body.appendChild(s);
 
-            transform:"translate(0,0) scale(1)",
 
-            opacity:1
 
-        },
+let x=(Math.random()-0.5)*900;
 
-        {
+let y=(Math.random()-0.5)*700;
 
-            transform:`translate(${x}px,${y}px) scale(0)`,
 
-            opacity:0
 
-        }
+s.animate([
 
-    ],{
+{
 
-        duration:2200,
+transform:"translate(0,0)",
 
-        easing:"ease-out"
+opacity:1
 
-    });
+},
 
-    setTimeout(()=>{
+{
 
-        s.remove();
+transform:`translate(${x}px,${y}px)`,
 
-    },2500);
+opacity:0
 
 }
 
-// ==========================================
-// PETALS
-// ==========================================
+],{
+
+
+duration:2000
+
+});
+
+
+
+setTimeout(()=>{
+
+s.remove();
+
+},2200);
+
+
+
+}
+
+
+
+
+
+
 
 function createPetal(){
 
-    const p=document.createElement("div");
 
-    p.className="petal";
+let p=document.createElement("div");
 
-    p.style.left=(window.innerWidth/2)+"px";
 
-    p.style.top=(window.innerHeight/2)+"px";
+p.className="petal";
 
-    document.body.appendChild(p);
 
-    const x=(Math.random()-0.5)*900;
+p.style.left="50%";
 
-    const y=-Math.random()*900;
+p.style.top="50%";
 
-    p.animate([
 
-        {
+document.body.appendChild(p);
 
-            transform:"translate(0,0) rotate(0deg)",
 
-            opacity:1
 
-        },
+let x=(Math.random()-0.5)*900;
 
-        {
+let y=-Math.random()*800;
 
-            transform:
-            `translate(${x}px,${y}px)
-            rotate(${Math.random()*720}deg)`,
 
-            opacity:0
 
-        }
+p.animate([
 
-    ],{
+{
 
-        duration:3500,
+transform:"translate(0,0)"
 
-        easing:"ease-out"
+},
 
-    });
+{
 
-    setTimeout(()=>{
+transform:
+`translate(${x}px,${y}px)
+rotate(600deg)`,
 
-        p.remove();
-
-    },3500);
+opacity:0
 
 }
 
-// ==========================================
-// HEART BUTTON
-// ==========================================
+],{
+
+
+duration:3000
+
+});
+
+
+
+setTimeout(()=>{
+
+p.remove();
+
+},3200);
+
+
+
+}
+
+
+
+
+
+
+
+
+// ===============================
+// HEART BUTTON -> PAGE 2
+// ===============================
+
 
 heartButton.addEventListener("click",()=>{
 
-    heartButton.style.pointerEvents="none";
 
-    heartButton.style.transform=
-    "translate(-50%,-50%) scale(1.4) rotate(45deg)";
+loveReveal.classList.remove("show");
 
-    setTimeout(()=>{
 
-        loveReveal.innerHTML=`
+setTimeout(()=>{
 
-        <h1>Forever & Always ❤️</h1>
 
-        <p>Tappu ❤️ Sumi</p>
+document.getElementById("page1")
+.classList.remove("active");
 
-        `;
 
-    },600);
 
-    // Page 2 later
-    setTimeout(()=>{
+document.getElementById("page2")
+.classList.add("active");
 
-        alert("Page 2 coming next ❤️");
 
-    },2500);
+
+},700);
+
+
 
 });
+
+
+
+
+
+
+
+// ===============================
+// PAGE 2 -> PAGE 3
+// ===============================
+
+
+function openGallery(){
+
+
+document.getElementById("page2")
+.classList.remove("active");
+
+
+
+document.getElementById("page3")
+.classList.add("active");
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// SLIDESHOW
+// ===============================
+
+
+let photos=[
+
+"images/Sumi1.jpg",
+"images/Sumi2.jpg",
+"images/Sumi3.jpg",
+"images/Sumi4.jpg",
+"images/Sumi5.jpg",
+"images/Sumi6.jpg",
+"images/Sumi7.jpg"
+
+];
+
+
+
+let photoIndex=0;
+
+
+
+setInterval(()=>{
+
+
+let img=document.getElementById("slideImage");
+
+
+
+if(img){
+
+
+photoIndex++;
+
+
+if(photoIndex>=photos.length){
+
+photoIndex=0;
+
+}
+
+
+img.src=photos[photoIndex];
+
+
+}
+
+
+
+},2500);
+
+
+
+
+
+
+
+
+// ===============================
+// PAGE 3 -> ENDING
+// ===============================
+
+
+function openEnding(){
+
+
+document.getElementById("page3")
+.classList.remove("active");
+
+
+
+document.getElementById("page4")
+.classList.add("active");
+
+
+}
