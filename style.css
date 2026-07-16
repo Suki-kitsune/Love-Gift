@@ -256,3 +256,103 @@ height:190px;
 }
 
 }
+
+/* HEARTS */
+
+.heart{
+
+    position:fixed;
+
+    width:18px;
+
+    height:18px;
+
+    background:#ff4fa2;
+
+    transform:rotate(45deg);
+
+    pointer-events:none;
+
+    z-index:999;
+
+}
+
+.heart::before,
+.heart::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:18px;
+    height:18px;
+
+    background:#ff4fa2;
+
+    border-radius:50%;
+
+}
+
+.heart::before{
+
+    top:-9px;
+    left:0;
+
+}
+
+.heart::after{
+
+    left:-9px;
+    top:0;
+
+}
+
+
+
+/* SPARKLES */
+
+.sparkle{
+
+    position:fixed;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+    0 0 10px white,
+    0 0 20px pink;
+
+    pointer-events:none;
+
+    z-index:998;
+
+}
+
+
+
+/* PETALS */
+
+.petal{
+
+    position:fixed;
+
+    width:14px;
+
+    height:14px;
+
+    background:#ffd6ea;
+
+    border-radius:70% 30% 70% 30%;
+
+    transform:rotate(45deg);
+
+    pointer-events:none;
+
+    z-index:997;
+
+}
