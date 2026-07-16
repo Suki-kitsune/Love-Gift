@@ -5,334 +5,254 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-
 body{
-
     overflow:hidden;
-
     height:100vh;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     background:#ffd6ea;
-
+    transition:1s;
 }
-
 
 /* background */
 
 .background{
-
     position:fixed;
-
     width:100%;
-
     height:100%;
-
     background:
     radial-gradient(circle,#ffe8f3,#ffc7df);
-
 }
-
 
 /* main container */
 
 .container{
-
     position:relative;
-
     text-align:center;
-
     z-index:10;
-
 }
-
 
 /* title */
 
 .title{
-
     color:#ff1493;
-
     font-size:40px;
-
     margin-bottom:40px;
-
     animation:float 2s infinite ease-in-out;
-
 }
-
 
 /* GIFT BOX */
 
 #giftBox{
-
+    position:relative;
     width:180px;
-
     height:180px;
-
     cursor:pointer;
-
     user-select:none;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     animation:bounce 2s infinite;
-
     transition:.4s;
-
 }
-
-
 
 #giftBox img{
-
     width:100%;
-
     height:100%;
-
     object-fit:contain;
-
     filter:drop-shadow(0 0 20px rgba(255,80,180,.5));
-
+    pointer-events:none;
 }
-
-
 
 #giftBox:hover{
-
     transform:scale(1.08);
-
 }
 
-
-
-/* tap animations */
-
+/* TAP ANIMATIONS */
 
 .shake{
-
     animation:shake .4s;
-
 }
-
-
 
 .shakeBig{
-
     animation:shakeBig .6s;
-
 }
-
-
 
 .glow{
-
     animation:glow 1s infinite alternate;
-
 }
-
-
 
 .open{
-
     transform:scale(1.4) rotate(10deg);
-
     transition:1s;
+}
+
+/* MAGIC GLOW */
+
+#magicGlow{
+
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+    rgba(255,180,230,.9),
+    transparent 70%);
+
+    opacity:0;
+
+    transform:scale(.4);
+
+    pointer-events:none;
 
 }
 
+.magic{
 
+    animation:magic 1s forwards;
 
-/* background change */
+}
+
+/* SCREEN FLASH */
+
+.flash{
+
+    animation:flash .8s;
+
+}
+
+/* BACKGROUND CHANGE */
 
 .dark{
-
     background:#ffb6d9;
-
     transition:1s;
-
 }
 
-
-
-/* floating animations */
-
+/* FLOAT */
 
 @keyframes bounce{
 
 0%,100%{
-
 transform:translateY(0px);
-
 }
 
 50%{
-
 transform:translateY(-15px);
-
 }
 
 }
-
-
 
 @keyframes float{
 
 0%,100%{
-
 transform:translateY(0px);
-
 }
 
 50%{
-
 transform:translateY(-8px);
-
 }
 
 }
 
-
-
-/* small shake */
-
+/* SMALL SHAKE */
 
 @keyframes shake{
 
-0%{
-
-transform:rotate(0deg);
-
-}
-
-20%{
-
-transform:rotate(-6deg);
+0%{transform:rotate(0deg);}
+20%{transform:rotate(-6deg);}
+40%{transform:rotate(6deg);}
+60%{transform:rotate(-6deg);}
+80%{transform:rotate(6deg);}
+100%{transform:rotate(0deg);}
 
 }
 
-40%{
-
-transform:rotate(6deg);
-
-}
-
-60%{
-
-transform:rotate(-6deg);
-
-}
-
-80%{
-
-transform:rotate(6deg);
-
-}
-
-100%{
-
-transform:rotate(0deg);
-
-}
-
-}
-
-
-
-/* big shake */
-
+/* BIG SHAKE */
 
 @keyframes shakeBig{
 
-0%{
-
-transform:rotate(0deg);
-
-}
-
-20%{
-
-transform:rotate(-10deg);
+0%{transform:rotate(0deg);}
+20%{transform:rotate(-10deg);}
+40%{transform:rotate(10deg);}
+60%{transform:rotate(-10deg);}
+80%{transform:rotate(10deg);}
+100%{transform:rotate(0deg);}
 
 }
 
-40%{
-
-transform:rotate(10deg);
-
-}
-
-60%{
-
-transform:rotate(-10deg);
-
-}
-
-80%{
-
-transform:rotate(10deg);
-
-}
-
-100%{
-
-transform:rotate(0deg);
-
-}
-
-}
-
-
-
-/* glow */
-
+/* GLOW */
 
 @keyframes glow{
 
 from{
-
 filter:drop-shadow(0 0 5px hotpink);
-
 }
-
 
 to{
-
 filter:drop-shadow(0 0 40px deeppink);
-
 }
 
 }
 
+/* MAGIC EXPLOSION */
 
+@keyframes magic{
 
-/* mobile */
+0%{
+opacity:0;
+transform:scale(.4);
+}
 
+50%{
+opacity:1;
+transform:scale(1.2);
+}
+
+100%{
+opacity:0;
+transform:scale(2);
+}
+
+}
+
+/* SCREEN FLASH */
+
+@keyframes flash{
+
+0%{
+background:#ffd6ea;
+}
+
+40%{
+background:#fff7fc;
+}
+
+100%{
+background:#ffb6d9;
+}
+
+}
+
+/* MOBILE */
 
 @media(max-width:600px){
 
 .title{
-
 font-size:32px;
-
 }
 
-
 #giftBox{
-
 width:150px;
-
 height:150px;
+}
 
+#magicGlow{
+width:190px;
+height:190px;
 }
 
 }
