@@ -1,4 +1,5 @@
 const gift = document.getElementById("giftBox");
+const magicGlow = document.getElementById("magicGlow");
 
 let taps = 0;
 let opened = false;
@@ -13,38 +14,110 @@ gift.addEventListener("click", () => {
 
     void gift.offsetWidth;
 
-    if (taps === 1) {
+    if(taps === 1){
 
         gift.classList.add("shake");
 
     }
 
-    else if (taps === 2) {
+    else if(taps === 2){
 
         gift.classList.add("shakeBig");
 
     }
 
-    else if (taps === 3) {
+    else if(taps === 3){
 
         gift.classList.add("glow");
 
     }
 
-    else if (taps === 4) {
+    else if(taps === 4){
 
         opened = true;
 
         document.body.classList.add("dark");
+        document.body.classList.add("flash");
 
         gift.classList.add("open");
 
+        magicGlow.classList.add("magic");
+
         setTimeout(()=>{
 
-            alert("❤️ Next we're making the heart explosion!");
+            heartExplosion();
 
         },1000);
 
     }
 
 });
+
+
+
+function heartExplosion(){
+
+    for(let i=0;i<80;i++){
+
+        createHeart();
+
+    }
+
+}
+
+
+
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.innerHTML="❤";
+
+    heart.style.position="fixed";
+
+    heart.style.left=(window.innerWidth/2)+"px";
+
+    heart.style.top=(window.innerHeight/2)+"px";
+
+    heart.style.fontSize=(Math.random()*25+15)+"px";
+
+    heart.style.pointerEvents="none";
+
+    heart.style.zIndex="9999";
+
+    heart.style.color=
+    `hsl(${330+Math.random()*30},100%,70%)`;
+
+    document.body.appendChild(heart);
+
+    const x=(Math.random()-0.5)*900;
+
+    const y=-Math.random()*800-100;
+
+    heart.animate([
+
+        {
+            transform:"translate(0,0) scale(1)",
+            opacity:1
+        },
+
+        {
+            transform:`translate(${x}px,${y}px) scale(0.3) rotate(${Math.random()*720}deg)`,
+            opacity:0
+        }
+
+    ],{
+
+        duration:2500+Math.random()*1200,
+
+        easing:"ease-out"
+
+    });
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },3800);
+
+}
