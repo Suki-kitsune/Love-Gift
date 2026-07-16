@@ -45,7 +45,21 @@ gift.addEventListener("click", () => {
 
         setTimeout(()=>{
 
-            heartExplosion();
+           heartExplosion();
+
+setTimeout(()=>{
+
+    document.getElementById("fox")
+    .classList.add("show");
+
+},1800);
+
+setTimeout(()=>{
+
+    document.getElementById("heartButton")
+    .classList.add("show");
+
+},3000);
 
         },1000);
 
