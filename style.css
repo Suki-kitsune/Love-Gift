@@ -558,3 +558,54 @@ transform:translate(-50%,-50%) rotate(45deg) scale(1.15);
     }
 
 }
+
+#loveReveal{
+
+    position:fixed;
+    top:50%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%)
+    scale(0);
+
+    text-align:center;
+
+    opacity:0;
+
+    color:white;
+
+    z-index:9999;
+
+    transition:1.5s ease;
+
+}
+
+
+#loveReveal.show{
+
+    opacity:1;
+
+    transform:
+    translate(-50%,-50%)
+    scale(1);
+
+}
+
+
+#loveReveal h1{
+
+    font-size:50px;
+
+    text-shadow:
+    0 0 20px pink,
+    0 0 40px hotpink;
+
+}
+
+
+#loveReveal p{
+
+    font-size:28px;
+
+}
