@@ -2,7 +2,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+font-family:'Fredoka',sans-serif;
 }
 
 html,body{
@@ -12,7 +12,7 @@ overflow:hidden;
 }
 
 body{
-background:#ffd8eb;
+background:#ffd9ec;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -23,10 +23,10 @@ align-items:center;
 .background{
 position:fixed;
 inset:0;
-background:
-linear-gradient(180deg,#fff6fb,#ffe4f1,#ffd4e8);
-z-index:-10;
 overflow:hidden;
+z-index:-10;
+background:
+linear-gradient(180deg,#fff9fc 0%,#ffe9f3 45%,#ffd7ea 100%);
 }
 
 .background::before{
@@ -34,9 +34,9 @@ content:"";
 position:absolute;
 inset:0;
 background:
-radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 30%),
-radial-gradient(circle at 80% 30%,rgba(255,255,255,.5),transparent 25%),
-radial-gradient(circle at 50% 80%,rgba(255,255,255,.6),transparent 35%);
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.85),transparent 35%),
+radial-gradient(circle at 80% 30%,rgba(255,255,255,.5),transparent 30%),
+radial-gradient(circle at 50% 80%,rgba(255,255,255,.6),transparent 40%);
 }
 
 /* ================= PAGES ================= */
@@ -54,234 +54,425 @@ padding:20px;
 
 .page.active{
 display:flex;
-animation:fadeIn .8s;
+animation:fadeIn .8s ease;
 }
 
 /* ================= PAGE 1 ================= */
 
 .container{
 width:100%;
-max-width:700px;
+max-width:900px;
 }
 
 .title{
-font-size:48px;
-color:#ff3f9b;
-margin-bottom:45px;
-text-shadow:0 0 15px rgba(255,255,255,.9);
+font-size:52px;
+font-weight:600;
+color:#ff2f95;
+margin-bottom:55px;
+text-shadow:
+0 0 12px rgba(255,255,255,.9),
+0 0 25px rgba(255,130,200,.6);
 animation:titleFloat 3s ease-in-out infinite;
 }
 
 .tapText{
-margin-top:30px;
-font-size:22px;
-color:#ff5aa8;
+margin-top:35px;
+font-size:24px;
+color:#ff5ca8;
 animation:pulse 2s infinite;
 }
 
 /* ================= GIFT ================= */
 
 #giftBox{
-width:220px;
-height:220px;
-margin:auto;
+
 position:relative;
-cursor:pointer;
+
+width:270px;
+height:270px;
+
+margin:auto;
+
 display:flex;
 justify-content:center;
 align-items:center;
-transition:.4s;
-animation:bounce 2.5s infinite;
+
+cursor:pointer;
+
+animation:bounce 2.6s infinite;
+
+transition:.45s;
+
 }
 
 #giftImg{
+
 width:100%;
+height:100%;
+object-fit:contain;
+
 user-select:none;
 pointer-events:none;
-filter:drop-shadow(0 0 25px #ff9ed0);
+
+filter:
+drop-shadow(0 0 40px rgba(255,120,200,.7));
+
 }
 
 #magicGlow{
+
 position:absolute;
-width:260px;
-height:260px;
+
+width:340px;
+height:340px;
+
 border-radius:50%;
-background:radial-gradient(circle,#ff7dc3 0%,transparent 70%);
+
+background:
+radial-gradient(circle,
+rgba(255,120,190,.9),
+rgba(255,120,190,.2),
+transparent 70%);
+
 opacity:0;
+
 pointer-events:none;
+
 }
 
 .magic{
+
 animation:magicBurst 1s forwards;
+
 }
 
 .shake{
+
 animation:shake .35s;
+
 }
 
 .shakeBig{
+
 animation:shakeBig .45s;
+
 }
 
 .glow{
-animation:giftGlow .8s infinite alternate;
+
+animation:giftGlow .9s infinite alternate;
+
 }
 
 .open{
-transform:scale(1.15);
+
+transform:scale(1.18);
+
 }
 
 /* ================= LOVE PAGE ================= */
 
 .loveContainer{
+
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:12px;
+justify-content:center;
+
+gap:10px;
+
 }
 
 .loveWord{
+
 opacity:0;
-transform:translateY(40px);
-font-size:68px;
-color:#ff3b94;
+
+transform:translateY(40px) scale(.8);
+
+font-size:62px;
+font-weight:600;
+
+color:#ff2f95;
+
 text-shadow:
 0 0 15px white,
 0 0 25px #ff8bc8;
+
 transition:1s;
+
 }
 
 .loveWord.show{
+
 opacity:1;
-transform:translateY(0);
+
+transform:translateY(0) scale(1);
+
 }
 
 #textYou.show{
-animation:heartbeat 1.4s infinite;
+
+animation:heartbeat 1.5s infinite;
+
 }
 
 #fox{
-width:220px;
-margin-top:25px;
+
+width:190px;
+
+margin-top:30px;
+
 opacity:0;
-transform:translateY(250px);
-transition:1.2s;
-filter:drop-shadow(0 0 18px #ff8fc8);
+
+transform:translateY(220px);
+
+transition:1.3s;
+
+filter:
+drop-shadow(0 0 20px rgba(255,120,200,.7));
+
 }
 
 #fox.show{
+
 opacity:1;
+
 transform:translateY(0);
+
+animation:foxBounce .8s ease,
+foxFloat 3s ease-in-out infinite 1s;
+
 }
 
 /* ================= PARTICLES ================= */
 
-.sparkle{
+.heart{
+
 position:fixed;
+
+pointer-events:none;
+
+z-index:9999;
+
+will-change:transform,opacity;
+
+}
+
+.sparkle{
+
+position:fixed;
+
 width:8px;
 height:8px;
+
 background:white;
+
 border-radius:50%;
+
 pointer-events:none;
-z-index:999;
+
+z-index:9998;
+
 }
 
 .petal{
+
 position:fixed;
-width:16px;
-height:16px;
-background:#ffd1e6;
+
+width:15px;
+height:15px;
+
+background:#ffd2e8;
+
 border-radius:50%;
+
 pointer-events:none;
-z-index:998;
+
+z-index:9997;
+
 }
 
 /* ================= ANIMATIONS ================= */
 
 @keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
 }
 
 @keyframes titleFloat{
+
 50%{
+
 transform:translateY(-10px);
+
 }
+
 }
 
 @keyframes bounce{
+
 50%{
+
 transform:translateY(-12px);
+
 }
+
 }
 
 @keyframes pulse{
+
 50%{
-opacity:.5;
+
+opacity:.45;
+
 }
+
 }
 
 @keyframes shake{
-25%{transform:rotate(-8deg);}
-50%{transform:rotate(8deg);}
-75%{transform:rotate(-5deg);}
+
+25%{transform:rotate(-7deg);}
+50%{transform:rotate(7deg);}
+75%{transform:rotate(-4deg);}
+
 }
 
 @keyframes shakeBig{
-25%{transform:rotate(-16deg);}
-50%{transform:rotate(16deg);}
-75%{transform:rotate(-12deg);}
+
+25%{transform:rotate(-15deg);}
+50%{transform:rotate(15deg);}
+75%{transform:rotate(-10deg);}
+
 }
 
 @keyframes giftGlow{
+
 from{
-filter:drop-shadow(0 0 12px hotpink);
+
+filter:drop-shadow(0 0 15px hotpink);
+
 }
+
 to{
-filter:drop-shadow(0 0 45px deeppink);
+
+filter:drop-shadow(0 0 55px deeppink);
+
 }
+
 }
 
 @keyframes magicBurst{
+
 0%{
+
 opacity:1;
 transform:scale(.2);
+
 }
+
 100%{
+
 opacity:0;
 transform:scale(3);
+
 }
+
 }
 
 @keyframes heartbeat{
+
 0%,100%{
+
 transform:scale(1);
+
 }
+
 50%{
+
 transform:scale(1.12);
+
 }
+
 }
+
+@keyframes foxBounce{
+
+0%{
+
+transform:translateY(220px);
+
+}
+
+70%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes foxFloat{
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+}
+
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
 .title{
-font-size:34px;
+
+font-size:38px;
+
+margin-bottom:40px;
+
 }
 
 #giftBox{
-width:170px;
-height:170px;
-}
 
-.loveWord{
-font-size:46px;
-}
+width:210px;
+height:210px;
 
-#fox{
-width:170px;
 }
 
 .tapText{
-font-size:18px;
+
+font-size:20px;
+
 }
+
+.loveWord{
+
+font-size:52px;
+
+}
+
+#fox{
+
+width:170px;
+
+}
+
 }
