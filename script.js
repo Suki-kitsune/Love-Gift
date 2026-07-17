@@ -18,7 +18,7 @@ let taps = 0;
 let opened = false;
 
 // ===============================
-// GIFT TAPS
+// GIFT
 // ===============================
 
 giftBox.addEventListener("click", () => {
@@ -27,239 +27,184 @@ giftBox.addEventListener("click", () => {
 
     taps++;
 
-    giftBox.classList.remove("shake", "shakeBig", "glow");
+    giftBox.classList.remove("shake","shakeBig","glow");
     void giftBox.offsetWidth;
 
-    if (taps === 1) {
+    if(taps==1){
 
         giftBox.classList.add("shake");
 
     }
 
-    else if (taps === 2) {
+    else if(taps==2){
 
         giftBox.classList.add("shakeBig");
 
     }
 
-    else if (taps === 3) {
+    else if(taps==3){
 
         giftBox.classList.add("glow");
 
     }
 
-    else if (taps === 4) {
+    else{
 
-        opened = true;
+        opened=true;
 
         giftBox.classList.add("open");
+
         magicGlow.classList.add("magic");
 
-        setTimeout(() => {
+        setTimeout(()=>{
 
-            giftImg.src = "gift_open.png";
+            giftImg.src="gift_open.png";
 
-        }, 600);
+        },500);
 
-        setTimeout(() => {
+        setTimeout(()=>{
 
-            explode();
+            heartRain();
 
-        }, 1000);
-
-        setTimeout(() => {
-
-            switchPage();
-
-        }, 3000);
+        },900);
 
     }
 
 });
 
 // ===============================
-// PAGE CHANGE
+// HEARTS FROM GIFT
 // ===============================
 
-function switchPage() {
+function heartRain(){
 
-    page1.classList.remove("active");
-    page2.classList.add("active");
+    const rect=giftImg.getBoundingClientRect();
 
-    setTimeout(() => {
+    let count=0;
 
-        textI.classList.add("show");
+    const interval=setInterval(()=>{
 
-    }, 500);
+        for(let i=0;i<10;i++){
 
-    setTimeout(() => {
+            createHeart(rect);
 
-        textLove.classList.add("show");
+        }
 
-    }, 1300);
+        count++;
 
-    setTimeout(() => {
+        if(count>=28){
 
-        textYou.classList.add("show");
+            clearInterval(interval);
 
-    }, 2100);
+            setTimeout(showLove,900);
 
-    setTimeout(() => {
+        }
 
-        fox.classList.add("show");
-
-    }, 3200);
+    },70);
 
 }
 
 // ===============================
-// EXPLOSION
-// ===============================
 
-function explode() {
+function createHeart(rect){
 
-    for (let i = 0; i < 180; i++) {
+    const heart=document.createElement("div");
 
-        createHeart();
+    heart.className="heart";
 
-    }
+    heart.innerHTML="💖";
 
-    for (let i = 0; i < 90; i++) {
+    heart.style.left=
+    (rect.left+rect.width/2+(Math.random()*40-20))+"px";
 
-        createSparkle();
+    heart.style.top=
+    (rect.top+40)+"px";
 
-    }
-
-    for (let i = 0; i < 70; i++) {
-
-        createPetal();
-
-    }
-
-}
-
-// ===============================
-// HEARTS
-// ===============================
-
-function createHeart() {
-
-    const heart = document.createElement("div");
-
-    heart.innerHTML = "❤️";
-
-    heart.style.position = "fixed";
-    heart.style.left = "50%";
-    heart.style.top = "50%";
-    heart.style.fontSize = (Math.random() * 26 + 18) + "px";
-    heart.style.pointerEvents = "none";
-    heart.style.zIndex = "9999";
+    heart.style.fontSize=
+    (20+Math.random()*35)+"px";
 
     document.body.appendChild(heart);
 
-    let x = (Math.random() - 0.5) * window.innerWidth * 2;
-    let y = (Math.random() - 0.5) * window.innerHeight * 2;
+    const x=(Math.random()-0.5)*window.innerWidth;
+
+    const y=-(Math.random()*window.innerHeight+300);
 
     heart.animate([
 
         {
-            transform: "translate(0,0) scale(1)",
-            opacity: 1
+
+            transform:"translate(0,0) scale(.5)",
+
+            opacity:0
+
         },
 
         {
-            transform: `translate(${x}px,${y}px) scale(.3)`,
-            opacity: 0
+
+            transform:
+            `translate(${x}px,${y}px) scale(1.2)`,
+
+            opacity:1,
+
+            offset:.7
+
+        },
+
+        {
+
+            transform:
+            `translate(${x}px,${y-150}px) scale(1)`,
+
+            opacity:0
+
         }
 
-    ], {
+    ],{
 
-        duration: 2500,
-        easing: "ease-out"
+        duration:2500,
+
+        easing:"ease-out",
+
+        fill:"forwards"
 
     });
 
-    setTimeout(() => heart.remove(), 2600);
+    setTimeout(()=>heart.remove(),2600);
 
 }
 
 // ===============================
-// SPARKLES
+// LOVE PAGE
 // ===============================
 
-function createSparkle() {
+function showLove(){
 
-    const s = document.createElement("div");
+    page1.classList.remove("active");
 
-    s.className = "sparkle";
+    page2.classList.add("active");
 
-    s.style.left = "50%";
-    s.style.top = "50%";
+    setTimeout(()=>{
 
-    document.body.appendChild(s);
+        textI.classList.add("show");
 
-    let x = (Math.random() - 0.5) * 1000;
-    let y = (Math.random() - 0.5) * 800;
+    },500);
 
-    s.animate([
+    setTimeout(()=>{
 
-        {
-            transform: "translate(0,0)",
-            opacity: 1
-        },
+        textLove.classList.add("show");
 
-        {
-            transform: `translate(${x}px,${y}px)`,
-            opacity: 0
-        }
+    },1300);
 
-    ], {
+    setTimeout(()=>{
 
-        duration: 1800
+        textYou.classList.add("show");
 
-    });
+    },2100);
 
-    setTimeout(() => s.remove(), 1900);
+    setTimeout(()=>{
 
-}
+        fox.classList.add("show");
 
-// ===============================
-// PETALS
-// ===============================
-
-function createPetal() {
-
-    const p = document.createElement("div");
-
-    p.className = "petal";
-
-    p.style.left = "50%";
-    p.style.top = "50%";
-
-    document.body.appendChild(p);
-
-    let x = (Math.random() - 0.5) * window.innerWidth * 2;
-    let y = (Math.random() - 0.5) * window.innerHeight * 2;
-
-    p.animate([
-
-        {
-            transform: "translate(0,0) rotate(0deg)",
-            opacity: 1
-        },
-
-        {
-            transform: `translate(${x}px,${y}px) rotate(720deg)`,
-            opacity: 0
-        }
-
-    ], {
-
-        duration: 2600,
-        easing: "ease-out"
-
-    });
-
-    setTimeout(() => p.remove(), 2700);
+    },3200);
 
 }
