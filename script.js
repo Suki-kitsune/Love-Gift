@@ -203,9 +203,8 @@ document.body.appendChild(heart);
 
 
 
-let x=(Math.random()-0.5)*900;
-
-let y=(Math.random()-0.5)*700;
+let x = (Math.random() - 0.5) * window.innerWidth * 2;
+let y = (Math.random() - 0.5) * window.innerHeight * 2;
 
 
 
@@ -337,10 +336,8 @@ document.body.appendChild(p);
 
 
 
-let x=(Math.random()-0.5)*900;
-
-let y=-Math.random()*800;
-
+let x = (Math.random() - 0.5) * window.innerWidth * 2;
+let y = (Math.random() - 0.5) * window.innerHeight * 2;
 
 
 p.animate([
