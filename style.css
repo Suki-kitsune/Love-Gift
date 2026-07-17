@@ -2,7 +2,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Fredoka',sans-serif;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 html,body{
@@ -12,7 +12,7 @@ overflow:hidden;
 }
 
 body{
-background:#ffd9ec;
+background:#ffd9eb;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -23,10 +23,10 @@ align-items:center;
 .background{
 position:fixed;
 inset:0;
-overflow:hidden;
-z-index:-10;
 background:
-linear-gradient(180deg,#fff9fc 0%,#ffe9f3 45%,#ffd7ea 100%);
+linear-gradient(180deg,#fff7fc,#ffe8f3,#ffd6ea);
+overflow:hidden;
+z-index:-20;
 }
 
 .background::before{
@@ -34,9 +34,26 @@ content:"";
 position:absolute;
 inset:0;
 background:
-radial-gradient(circle at 20% 20%,rgba(255,255,255,.85),transparent 35%),
-radial-gradient(circle at 80% 30%,rgba(255,255,255,.5),transparent 30%),
-radial-gradient(circle at 50% 80%,rgba(255,255,255,.6),transparent 40%);
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 30%),
+radial-gradient(circle at 80% 25%,rgba(255,255,255,.5),transparent 25%),
+radial-gradient(circle at 50% 80%,rgba(255,255,255,.6),transparent 35%);
+}
+
+/* ================= FLOATING HEARTS ================= */
+
+#floatingHearts{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:-5;
+}
+
+.bgHeart{
+position:absolute;
+font-size:18px;
+opacity:.15;
+animation:bgFloat linear infinite;
 }
 
 /* ================= PAGES ================= */
@@ -54,7 +71,7 @@ padding:20px;
 
 .page.active{
 display:flex;
-animation:fadeIn .8s ease;
+animation:pageFade .8s;
 }
 
 /* ================= PAGE 1 ================= */
@@ -66,246 +83,172 @@ max-width:900px;
 
 .title{
 font-size:52px;
-font-weight:600;
-color:#ff2f95;
-margin-bottom:55px;
+color:#ff3f98;
+margin-bottom:45px;
 text-shadow:
-0 0 12px rgba(255,255,255,.9),
-0 0 25px rgba(255,130,200,.6);
+0 0 12px white,
+0 0 25px pink;
 animation:titleFloat 3s ease-in-out infinite;
 }
 
 .tapText{
 margin-top:35px;
 font-size:24px;
-color:#ff5ca8;
+color:#ff6aaa;
 animation:pulse 2s infinite;
 }
 
 /* ================= GIFT ================= */
 
 #giftBox{
-
 position:relative;
-
-width:270px;
-height:270px;
-
+width:260px;
+height:260px;
 margin:auto;
-
 display:flex;
 justify-content:center;
 align-items:center;
-
 cursor:pointer;
-
-animation:bounce 2.6s infinite;
-
-transition:.45s;
-
+animation:bounce 2.5s infinite;
+transition:.4s;
 }
 
 #giftImg{
-
 width:100%;
-height:100%;
-object-fit:contain;
-
+display:block;
 user-select:none;
 pointer-events:none;
-
-filter:
-drop-shadow(0 0 40px rgba(255,120,200,.7));
-
+filter:drop-shadow(0 0 35px #ff9ccc);
+background:transparent;
 }
 
 #magicGlow{
-
 position:absolute;
-
-width:340px;
-height:340px;
-
+width:320px;
+height:320px;
 border-radius:50%;
-
 background:
-radial-gradient(circle,
-rgba(255,120,190,.9),
-rgba(255,120,190,.2),
-transparent 70%);
-
+radial-gradient(circle,#ff7fc7 0%,transparent 70%);
 opacity:0;
-
 pointer-events:none;
-
 }
 
 .magic{
-
 animation:magicBurst 1s forwards;
-
 }
 
 .shake{
-
 animation:shake .35s;
-
 }
 
 .shakeBig{
-
-animation:shakeBig .45s;
-
+animation:shakeBig .5s;
 }
 
 .glow{
-
-animation:giftGlow .9s infinite alternate;
-
+animation:giftGlow .8s infinite alternate;
 }
 
 .open{
-
 transform:scale(1.18);
-
 }
+
+/* ================= HEART TRANSITION ================= */
+
+#heartTransition{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:999;
+}
+
+.transitionHeart{
+position:absolute;
+font-size:26px;
+animation:heartCover 1.8s linear forwards;
+}
+
 
 /* ================= LOVE PAGE ================= */
 
 .loveContainer{
-
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-
-gap:10px;
-
+gap:12px;
 }
 
 .loveWord{
-
 opacity:0;
-
-transform:translateY(40px) scale(.8);
-
-font-size:62px;
-font-weight:600;
-
-color:#ff2f95;
-
+transform:translateY(40px) scale(.85);
+font-size:56px;
+font-weight:bold;
+color:#ff3d97;
 text-shadow:
 0 0 15px white,
-0 0 25px #ff8bc8;
-
+0 0 30px #ff9ad0;
 transition:1s;
-
 }
 
 .loveWord.show{
-
 opacity:1;
-
 transform:translateY(0) scale(1);
-
 }
 
 #textYou.show{
-
 animation:heartbeat 1.5s infinite;
-
 }
 
 #fox{
-
-width:190px;
-
+width:230px;
 margin-top:30px;
-
 opacity:0;
-
-transform:translateY(220px);
-
+transform:translateY(250px);
+filter:drop-shadow(0 0 25px pink);
 transition:1.3s;
-
-filter:
-drop-shadow(0 0 20px rgba(255,120,200,.7));
-
 }
 
 #fox.show{
-
 opacity:1;
-
 transform:translateY(0);
-
 animation:foxBounce .8s ease,
 foxFloat 3s ease-in-out infinite 1s;
-
 }
 
 /* ================= PARTICLES ================= */
 
-.heart{
-
-position:fixed;
-
-pointer-events:none;
-
-z-index:9999;
-
-will-change:transform,opacity;
-
-}
-
 .sparkle{
-
 position:fixed;
-
 width:8px;
 height:8px;
-
 background:white;
-
 border-radius:50%;
-
 pointer-events:none;
-
-z-index:9998;
-
+z-index:9999;
 }
 
 .petal{
-
 position:fixed;
-
-width:15px;
-height:15px;
-
-background:#ffd2e8;
-
+width:14px;
+height:14px;
+background:#ffd3e8;
 border-radius:50%;
-
 pointer-events:none;
-
-z-index:9997;
-
+z-index:9998;
 }
 
 /* ================= ANIMATIONS ================= */
 
-@keyframes fadeIn{
+@keyframes pageFade{
 
 from{
-
 opacity:0;
-
 }
 
 to{
-
 opacity:1;
-
 }
 
 }
@@ -313,9 +256,7 @@ opacity:1;
 @keyframes titleFloat{
 
 50%{
-
 transform:translateY(-10px);
-
 }
 
 }
@@ -323,9 +264,7 @@ transform:translateY(-10px);
 @keyframes bounce{
 
 50%{
-
 transform:translateY(-12px);
-
 }
 
 }
@@ -333,26 +272,40 @@ transform:translateY(-12px);
 @keyframes pulse{
 
 50%{
-
 opacity:.45;
-
 }
 
 }
 
 @keyframes shake{
 
-25%{transform:rotate(-7deg);}
-50%{transform:rotate(7deg);}
-75%{transform:rotate(-4deg);}
+25%{
+transform:rotate(-8deg);
+}
+
+50%{
+transform:rotate(8deg);
+}
+
+75%{
+transform:rotate(-5deg);
+}
 
 }
 
 @keyframes shakeBig{
 
-25%{transform:rotate(-15deg);}
-50%{transform:rotate(15deg);}
-75%{transform:rotate(-10deg);}
+25%{
+transform:rotate(-15deg);
+}
+
+50%{
+transform:rotate(15deg);
+}
+
+75%{
+transform:rotate(-10deg);
+}
 
 }
 
@@ -409,21 +362,15 @@ transform:scale(1.12);
 @keyframes foxBounce{
 
 0%{
-
-transform:translateY(220px);
-
+transform:translateY(250px);
 }
 
 70%{
-
-transform:translateY(-12px);
-
+transform:translateY(-15px);
 }
 
 100%{
-
 transform:translateY(0);
-
 }
 
 }
@@ -431,9 +378,43 @@ transform:translateY(0);
 @keyframes foxFloat{
 
 50%{
-
 transform:translateY(-8px);
+}
 
+}
+
+@keyframes heartCover{
+
+0%{
+transform:translateY(100vh) scale(.4);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh) scale(1.3);
+opacity:0;
+}
+
+}
+
+@keyframes bgFloat{
+
+0%{
+transform:translateY(110vh);
+opacity:0;
+}
+
+15%{
+opacity:.15;
+}
+
+100%{
+transform:translateY(-120vh);
+opacity:0;
 }
 
 }
@@ -443,36 +424,24 @@ transform:translateY(-8px);
 @media(max-width:700px){
 
 .title{
-
-font-size:38px;
-
-margin-bottom:40px;
-
+font-size:36px;
 }
 
 #giftBox{
-
-width:210px;
-height:210px;
-
+width:220px;
+height:220px;
 }
 
 .tapText{
-
-font-size:20px;
-
+font-size:19px;
 }
 
 .loveWord{
-
-font-size:52px;
-
+font-size:46px;
 }
 
 #fox{
-
-width:170px;
-
+width:190px;
 }
 
 }
