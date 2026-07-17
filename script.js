@@ -6,519 +6,260 @@ const giftBox = document.getElementById("giftBox");
 const giftImg = document.getElementById("giftImg");
 const magicGlow = document.getElementById("magicGlow");
 
-const fox = document.getElementById("fox");
-const heartButton = document.getElementById("heartButton");
-const loveReveal = document.getElementById("loveReveal");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
 
+const textI = document.getElementById("textI");
+const textLove = document.getElementById("textLove");
+const textYou = document.getElementById("textYou");
+const fox = document.getElementById("fox");
 
 let taps = 0;
 let opened = false;
 
-
-
 // ===============================
-// GIFT SYSTEM
+// GIFT TAPS
 // ===============================
 
+giftBox.addEventListener("click", () => {
 
-giftBox.addEventListener("click",()=>{
+    if (opened) return;
 
+    taps++;
 
-if(opened) return;
+    giftBox.classList.remove("shake", "shakeBig", "glow");
+    void giftBox.offsetWidth;
 
+    if (taps === 1) {
 
-taps++;
+        giftBox.classList.add("shake");
 
+    }
 
+    else if (taps === 2) {
 
-giftBox.classList.remove(
-"shake",
-"shakeBig",
-"glow"
-);
+        giftBox.classList.add("shakeBig");
 
+    }
 
-void giftBox.offsetWidth;
+    else if (taps === 3) {
 
+        giftBox.classList.add("glow");
 
+    }
 
-if(taps===1){
+    else if (taps === 4) {
 
-giftBox.classList.add("shake");
+        opened = true;
 
-}
+        giftBox.classList.add("open");
+        magicGlow.classList.add("magic");
 
+        setTimeout(() => {
 
+            giftImg.src = "gift_open.png";
 
-else if(taps===2){
+        }, 600);
 
-giftBox.classList.add("shakeBig");
+        setTimeout(() => {
 
-}
+            explode();
 
+        }, 1000);
 
+        setTimeout(() => {
 
-else if(taps===3){
+            switchPage();
 
-giftBox.classList.add("glow");
+        }, 3000);
 
-}
-
-
-
-
-else if(taps===4){
-
-
-opened=true;
-
-
-
-giftBox.classList.add("open");
-
-magicGlow.classList.add("magic");
-
-
-
-setTimeout(()=>{
-
-giftImg.src="images/gift_open.png";
-
-},650);
-
-
-
-
-setTimeout(()=>{
-
-heartExplosion();
-
-},1000);
-
-
-
-
-
-setTimeout(()=>{
-
-fox.classList.add("show");
-
-},2300);
-
-
-
-
-
-setTimeout(()=>{
-
-heartButton.classList.add("show");
-
-},3500);
-
-
-
-
-
-
-setTimeout(()=>{
-
-loveReveal.classList.add("show");
-
-},4200);
-
-
-
-}
-
-
+    }
 
 });
 
-
-
-
-
-
 // ===============================
-// PARTICLE EXPLOSION
+// PAGE CHANGE
 // ===============================
 
+function switchPage() {
 
-function heartExplosion(){
+    page1.classList.remove("active");
+    page2.classList.add("active");
 
+    setTimeout(() => {
 
-for(let i=0;i<120;i++){
+        textI.classList.add("show");
 
-createHeart();
+    }, 500);
 
-}
+    setTimeout(() => {
 
+        textLove.classList.add("show");
 
+    }, 1300);
 
-for(let i=0;i<70;i++){
+    setTimeout(() => {
 
-createSparkle();
+        textYou.classList.add("show");
 
-}
+    }, 2100);
 
+    setTimeout(() => {
 
+        fox.classList.add("show");
 
-for(let i=0;i<50;i++){
-
-createPetal();
-
-}
-
-
-}
-
-
-
-
-
-function createHeart(){
-
-
-let heart=document.createElement("div");
-
-
-heart.innerHTML="❤️";
-
-
-heart.style.position="fixed";
-
-heart.style.left="50%";
-
-heart.style.top="50%";
-
-heart.style.fontSize=
-(Math.random()*25+15)+"px";
-
-
-heart.style.zIndex="9999";
-
-
-
-document.body.appendChild(heart);
-
-
-
-let x = (Math.random() - 0.5) * window.innerWidth * 2;
-let y = (Math.random() - 0.5) * window.innerHeight * 2;
-
-
-
-heart.animate([
-
-{
-
-transform:"translate(0,0)",
-
-opacity:1
-
-},
-
-{
-
-transform:
-`translate(${x}px,${y}px) scale(.2)`,
-
-opacity:0
+    }, 3200);
 
 }
-
-],{
-
-
-duration:2500
-
-});
-
-
-
-setTimeout(()=>{
-
-heart.remove();
-
-},3000);
-
-
-
-}
-
-
-
-
-
-
-function createSparkle(){
-
-
-let s=document.createElement("div");
-
-
-s.className="sparkle";
-
-
-s.style.left="50%";
-
-s.style.top="50%";
-
-
-document.body.appendChild(s);
-
-
-
-let x=(Math.random()-0.5)*900;
-
-let y=(Math.random()-0.5)*700;
-
-
-
-s.animate([
-
-{
-
-transform:"translate(0,0)",
-
-opacity:1
-
-},
-
-{
-
-transform:`translate(${x}px,${y}px)`,
-
-opacity:0
-
-}
-
-],{
-
-
-duration:2000
-
-});
-
-
-
-setTimeout(()=>{
-
-s.remove();
-
-},2200);
-
-
-
-}
-
-
-
-
-
-
-
-function createPetal(){
-
-
-let p=document.createElement("div");
-
-
-p.className="petal";
-
-
-p.style.left="50%";
-
-p.style.top="50%";
-
-
-document.body.appendChild(p);
-
-
-
-let x = (Math.random() - 0.5) * window.innerWidth * 2;
-let y = (Math.random() - 0.5) * window.innerHeight * 2;
-
-
-p.animate([
-
-{
-
-transform:"translate(0,0)"
-
-},
-
-{
-
-transform:
-`translate(${x}px,${y}px)
-rotate(600deg)`,
-
-opacity:0
-
-}
-
-],{
-
-
-duration:3000
-
-});
-
-
-
-setTimeout(()=>{
-
-p.remove();
-
-},3200);
-
-
-
-}
-
-
-
-
-
-
-
 
 // ===============================
-// HEART BUTTON -> PAGE 2
+// EXPLOSION
 // ===============================
 
+function explode() {
 
-heartButton.addEventListener("click",()=>{
+    for (let i = 0; i < 180; i++) {
 
+        createHeart();
 
-loveReveal.classList.remove("show");
+    }
 
+    for (let i = 0; i < 90; i++) {
 
-setTimeout(()=>{
+        createSparkle();
 
+    }
 
-document.getElementById("page1")
-.classList.remove("active");
+    for (let i = 0; i < 70; i++) {
 
+        createPetal();
 
-
-document.getElementById("page2")
-.classList.add("active");
-
-
-
-},700);
-
-
-
-});
-
-
-
-
-
-
-
-// ===============================
-// PAGE 2 -> PAGE 3
-// ===============================
-
-
-function openGallery(){
-
-
-document.getElementById("page2")
-.classList.remove("active");
-
-
-
-document.getElementById("page3")
-.classList.add("active");
-
+    }
 
 }
 
-
-
-
-
-
-
 // ===============================
-// SLIDESHOW
+// HEARTS
 // ===============================
 
+function createHeart() {
 
-let photos=[
+    const heart = document.createElement("div");
 
-"images/Sumi1.jpg",
-"images/Sumi2.jpg",
-"images/Sumi3.jpg",
-"images/Sumi4.jpg",
-"images/Sumi5.jpg",
-"images/Sumi6.jpg",
-"images/Sumi7.jpg"
+    heart.innerHTML = "❤️";
 
-];
+    heart.style.position = "fixed";
+    heart.style.left = "50%";
+    heart.style.top = "50%";
+    heart.style.fontSize = (Math.random() * 26 + 18) + "px";
+    heart.style.pointerEvents = "none";
+    heart.style.zIndex = "9999";
 
+    document.body.appendChild(heart);
 
+    let x = (Math.random() - 0.5) * window.innerWidth * 2;
+    let y = (Math.random() - 0.5) * window.innerHeight * 2;
 
-let photoIndex=0;
+    heart.animate([
 
+        {
+            transform: "translate(0,0) scale(1)",
+            opacity: 1
+        },
 
+        {
+            transform: `translate(${x}px,${y}px) scale(.3)`,
+            opacity: 0
+        }
 
-setInterval(()=>{
+    ], {
 
+        duration: 2500,
+        easing: "ease-out"
 
-let img=document.getElementById("slideImage");
+    });
 
-
-
-if(img){
-
-
-photoIndex++;
-
-
-if(photoIndex>=photos.length){
-
-photoIndex=0;
+    setTimeout(() => heart.remove(), 2600);
 
 }
 
+// ===============================
+// SPARKLES
+// ===============================
 
-img.src=photos[photoIndex];
+function createSparkle() {
 
+    const s = document.createElement("div");
+
+    s.className = "sparkle";
+
+    s.style.left = "50%";
+    s.style.top = "50%";
+
+    document.body.appendChild(s);
+
+    let x = (Math.random() - 0.5) * 1000;
+    let y = (Math.random() - 0.5) * 800;
+
+    s.animate([
+
+        {
+            transform: "translate(0,0)",
+            opacity: 1
+        },
+
+        {
+            transform: `translate(${x}px,${y}px)`,
+            opacity: 0
+        }
+
+    ], {
+
+        duration: 1800
+
+    });
+
+    setTimeout(() => s.remove(), 1900);
 
 }
 
-
-
-},2500);
-
-
-
-
-
-
-
-
 // ===============================
-// PAGE 3 -> ENDING
+// PETALS
 // ===============================
 
+function createPetal() {
 
-function openEnding(){
+    const p = document.createElement("div");
 
+    p.className = "petal";
 
-document.getElementById("page3")
-.classList.remove("active");
+    p.style.left = "50%";
+    p.style.top = "50%";
 
+    document.body.appendChild(p);
 
+    let x = (Math.random() - 0.5) * window.innerWidth * 2;
+    let y = (Math.random() - 0.5) * window.innerHeight * 2;
 
-document.getElementById("page4")
-.classList.add("active");
+    p.animate([
 
+        {
+            transform: "translate(0,0) rotate(0deg)",
+            opacity: 1
+        },
+
+        {
+            transform: `translate(${x}px,${y}px) rotate(720deg)`,
+            opacity: 0
+        }
+
+    ], {
+
+        duration: 2600,
+        easing: "ease-out"
+
+    });
+
+    setTimeout(() => p.remove(), 2700);
 
 }
